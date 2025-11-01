@@ -70,7 +70,9 @@ function ModeToggle() {
 export default function Header({ currentPath }: HeaderProps) {
   return (
     <header className={styles.header}>
-      <div className={styles.brand}>Takashi Araki</div>
+      <a href="/" className={styles.brand} aria-label="Takashi Araki Home">
+        Takashi Araki
+      </a>
       <GlobalMenu currentPath={currentPath} />
       <ModeToggle />
     </header>

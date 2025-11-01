@@ -18,28 +18,92 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props as Props;
 
-const { Content } = await post.render();
-const formattedDate = post.data.date.toLocaleDateString("ja-JP", {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-});
+const { Content, headings } = await post.render();
+
+const formatDate = (value: Date) =>
+  value.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+const publishedDate = formatDate(post.data.date);
+const updatedDate = post.data.updated ? formatDate(post.data.updated) : publishedDate;
+
+const tocItems = headings
+  .filter((heading) => heading.depth <= 3)
+  .map((heading) => ({
+    slug: heading.slug,
+    text: heading.text,
+    depth: heading.depth,
+  }));
+
+const likes = post.data.likes ?? 0;
 ---
 
 <BaseLayout>
   <main class={styles.wrapper}>
-    <article class={styles.article}>
-      <header class={styles.header}>
-        <p class={styles.meta}>
-          {formattedDate}
-          <span aria-hidden="true"> / </span>
-          <span>{post.data.category}</span>
-        </p>
-        <h1 class={styles.title}>{post.data.title}</h1>
-      </header>
-      <div class={styles.body}>
-        <Content />
-      </div>
-    </article>
+    <div class={styles.layout}>
+      <article class={styles.article}>
+        <header class={styles.header}>
+          <h1 class={styles.title}>{post.data.title}</h1>
+          <div class={styles.metaSection}>
+            <div class={styles.metaGrid}>
+              <div class={styles.metaRow}>
+                <span class={styles.metaLabel}>Date:</span>
+                <span class={styles.metaValue}>{publishedDate}</span>
+              </div>
+              <div class={styles.metaRow}>
+                <span class={styles.metaLabel}>Last update:</span>
+                <span class={styles.metaValue}>{updatedDate}</span>
+              </div>
+            </div>
+            <div class={styles.metaRow}>
+              <span class={styles.metaLabel}>Category:</span>
+              <span class={styles.metaValue}>{post.data.category}</span>
+            </div>
+          </div>
+        </header>
+        <div class={styles.body}>
+          <Content />
+        </div>
+      </article>
+      <aside class={styles.sidebar}>
+        <nav aria-label="Table of contents" class={styles.toc}>
+          <h2 class={styles.tocTitle}>Table of contents</h2>
+          {tocItems.length === 0 ? (
+            <p class={styles.emptyToc}>見出しはまだありません。</p>
+          ) : (
+            <ol class={styles.tocList}>
+              {tocItems.map((item, index) => (
+                <li key={item.slug} class={item.depth === 3 ? styles.tocItemNested : undefined}>
+                  <a
+                    href={`#${item.slug}`}
+                    class={index === 0 ? `${styles.tocLink} ${styles.tocLinkActive}` : styles.tocLink}
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          )}
+        </nav>
+        <div class={styles.reaction}>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 15.3c-.3 0-.6-.1-.8-.3L3.9 11c-1.3-1.2-2-2.9-2-4.7 0-2.5 1.9-4.5 4.2-4.5 1.2 0 2.3.6 3 1.5.7-.9 1.8-1.5 3-1.5 2.3 0 4.2 2 4.2 4.5 0 1.8-.7 3.5-2 4.7l-4.3 4c-.2.2-.5.3-.8.3Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span>{likes}</span>
+        </div>
+      </aside>
+    </div>
   </main>
 </BaseLayout>

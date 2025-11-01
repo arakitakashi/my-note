@@ -7,6 +7,8 @@ const blog = defineCollection({
     description: z.string(),
     category: z.string(),
     date: z.date(),
+    updated: z.date().optional(),
+    likes: z.number().optional(),
   }),
 });
 
