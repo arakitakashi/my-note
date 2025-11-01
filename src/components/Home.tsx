@@ -49,7 +49,12 @@ function CategoryList({ categories }: { categories: Category[] }) {
 function SocialLinks() {
   return (
     <div className={styles.socials}>
-      <a href="https://x.com" className={styles.socialLink} aria-label="X">
+      <a
+        href="https://x.com/arara__t"
+        target="_blank"
+        className={styles.socialLink}
+        aria-label="X"
+      >
         <span className={styles.srOnly}>X</span>
         <svg
           width="18"
@@ -65,7 +70,8 @@ function SocialLinks() {
         </svg>
       </a>
       <a
-        href="https://github.com"
+        href="https://github.com/arakitakashi"
+        target="_blank"
         className={styles.socialLink}
         aria-label="GitHub"
       >
