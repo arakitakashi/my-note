@@ -1,0 +1,45 @@
+.wrapper {
+  padding: 120px 120px 160px;
+  color: var(--color-text-primary);
+  display: grid;
+  background: var(--color-bg);
+}
+
+.inner {
+  margin: 0 auto;
+  width: min(100%, 720px);
+  display: grid;
+  gap: 24px;
+}
+
+.title {
+  font-size: 32px;
+  letter-spacing: 0.08em;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
+
+.body {
+  display: grid;
+  gap: 16px;
+  line-height: 1.8;
+  color: var(--color-text-subtle);
+}
+
+.body :global(a) {
+  color: var(--color-accent);
+}
+
+.body :global(a:hover),
+.body :global(a:focus-visible) {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 80px 24px 120px;
+  }
+}

@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import styles from "../../styles/PostPage.module.css";
+
+type Props = {
+  post: CollectionEntry<"blog">;
+};
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as Props;
+
+const { Content } = await post.render();
+const formattedDate = post.data.date.toLocaleDateString("ja-JP", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<BaseLayout>
+  <main class={styles.wrapper}>
+    <article class={styles.article}>
+      <header class={styles.header}>
+        <p class={styles.meta}>
+          {formattedDate}
+          <span aria-hidden="true"> / </span>
+          <span>{post.data.category}</span>
+        </p>
+        <h1 class={styles.title}>{post.data.title}</h1>
+      </header>
+      <div class={styles.body}>
+        <Content />
+      </div>
+    </article>
+  </main>
+</BaseLayout>

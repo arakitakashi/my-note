@@ -1,3 +1,126 @@
-export function Home() {
-  return <h1>Home</h1>;
+import styles from "./Home.module.css";
+
+type Category = {
+  name: string;
+  count: number;
+  href: string;
+  isActive?: boolean;
+};
+
+type Post = {
+  title: string;
+  excerpt: string;
+  href: string;
+};
+
+type HomeProps = {
+  categories: Category[];
+  posts: Post[];
+};
+
+function CategoryList({ categories }: { categories: Category[] }) {
+  return (
+    <aside className={styles.categories}>
+      <h2>Categories</h2>
+      {categories.length === 0 ? (
+        <p className={styles.emptyText}>カテゴリの準備中です。</p>
+      ) : (
+        <ul className={styles.categoryList}>
+          {categories.map((category) => (
+            <li key={category.name}>
+              <a
+                href={category.href}
+                className={
+                  category.isActive
+                    ? `${styles.categoryLink} ${styles.activeCategory}`
+                    : styles.categoryLink
+                }
+              >
+                {category.name} ({category.count})
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </aside>
+  );
+}
+
+function SocialLinks() {
+  return (
+    <div className={styles.socials}>
+      <a href="https://x.com" className={styles.socialLink} aria-label="X">
+        <span className={styles.srOnly}>X</span>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.162 3H2.25l4.98 6.791L2.52 15h2.851l3.16-3.668L11.954 15H14.7l-5.27-7.18L14.275 3h-2.8l-2.874 3.319L5.162 3Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+      <a
+        href="https://github.com"
+        className={styles.socialLink}
+        aria-label="GitHub"
+      >
+        <span className={styles.srOnly}>GitHub</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M10 0.833252C4.939 0.833252 0.833374 4.93888 0.833374 9.99992C0.833374 14.0966 3.46754 17.5616 7.16754 18.8783C7.61629 18.9616 7.79129 18.6866 7.79129 18.4441C7.79129 18.2266 7.78379 17.6866 7.77962 16.9116C5.30021 17.4504 4.74646 15.5941 4.74646 15.5941C4.33396 14.5383 3.71212 14.2616 3.71212 14.2616C2.84129 13.6808 3.77879 13.6933 3.77879 13.6933C4.74462 13.7616 5.25212 14.6783 5.25212 14.6783C6.10796 16.2066 7.55046 15.7666 8.11962 15.5333C8.20379 14.9191 8.45462 14.4933 8.72962 14.2666C6.61796 14.0366 4.39962 13.2116 4.39962 9.84159C4.39962 8.83825 4.75879 8.01659 5.34629 7.37325C5.25212 7.14325 4.94546 6.23159 5.43629 4.98159C5.43629 4.98159 6.20796 4.73659 7.77129 5.82659C8.50962 5.62159 9.30962 5.51659 10.1096 5.51159C10.9096 5.51659 11.7096 5.62159 12.448 5.82659C14.0113 4.73659 14.7821 4.98159 14.7821 4.98159C15.2729 6.23159 14.9663 7.14325 14.8721 7.37325C15.4596 8.01659 15.8188 8.83825 15.8188 9.84159C15.8188 13.2233 13.5963 14.0316 11.4771 14.2574C11.8221 14.5541 12.1288 15.1566 12.1288 16.0849C12.1288 17.3741 12.1163 18.1583 12.1163 18.4441C12.1163 18.6866 12.2896 18.9666 12.7446 18.8783C16.4446 17.5616 19.0788 14.0966 19.0788 9.99992C19.0788 4.93888 14.9731 0.833252 10 0.833252Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+    </div>
+  );
+}
+
+function PostList({ posts }: { posts: Post[] }) {
+  return (
+    <section className={styles.posts}>
+      {posts.length === 0 ? (
+        <p className={styles.postExcerpt}>
+          まだ記事がありません。更新までしばらくお待ちください。
+        </p>
+      ) : (
+        posts.map((post, index) => (
+          <article key={`${post.title}-${index}`} className={styles.post}>
+            <h3 className={styles.postTitle}>{post.title}</h3>
+            <p className={styles.postExcerpt}>{post.excerpt}</p>
+            <a href={post.href} className={styles.readMore}>
+              Read more ...
+            </a>
+          </article>
+        ))
+      )}
+    </section>
+  );
+}
+
+export function Home({ categories, posts }: HomeProps) {
+  return (
+    <main className={styles.container}>
+      <div className={styles.inner}>
+        <div className={styles.layout}>
+          <CategoryList categories={categories} />
+          <PostList posts={posts} />
+        </div>
+        <SocialLinks />
+      </div>
+    </main>
+  );
 }

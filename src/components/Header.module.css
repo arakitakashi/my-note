@@ -1,9 +1,67 @@
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 48px 120px 24px;
+  color: var(--color-text-primary);
+}
+
+.brand {
+  font-size: 24px;
+  letter-spacing: 0.12em;
 }
 
 .globalMenu {
-  display: flex;
-  gap: 60px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-auto-flow: column;
+  gap: 64px;
+  font-size: 16px;
+}
+
+.globalMenu li {
+  position: relative;
+  padding-left: 24px;
+  display: grid;
+  align-items: center;
+}
+
+.globalMenu a {
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.globalMenu a:hover,
+.globalMenu a:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.activeLink {
+  color: var(--color-text-primary);
+}
+
+.activeLink::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent-strong);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.modeToggle {
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  color: var(--color-icon);
+}
+
+.modeToggle img {
+  width: 20px;
+  height: 20px;
+  filter: var(--icon-filter);
 }

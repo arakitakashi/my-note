@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import styles from "../styles/SimplePage.module.css";
+---
+
+<BaseLayout>
+  <main class={styles.wrapper}>
+    <div class={styles.inner}>
+      <h2 class={styles.title}>About</h2>
+      <p class={styles.subtitle}>Takashi Araki</p>
+      <div class={styles.body}>
+        <p>
+          フロントエンドを中心にものづくりをしているソフトウェアエンジニアです。
+          デザインと開発の間をつなぎながら、日々プロダクトの改善に取り組んでいます。
+        </p>
+        <p>
+          このページでは、プロフィールやこれまでの活動履歴を公開していく予定です。
+          近況や雑記はブログで更新しているので、合わせてご覧ください。
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

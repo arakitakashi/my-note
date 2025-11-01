@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import styles from "../styles/SimplePage.module.css";
+---
+
+<BaseLayout>
+  <main class={styles.wrapper}>
+    <div class={styles.inner}>
+      <h2 class={styles.title}>Products</h2>
+      <p class={styles.subtitle}>ワークインプログレス</p>
+      <div class={styles.body}>
+        <p>
+          個人で開発中のプロダクトをまとめる予定です。進行中のアイデアや、公開
+          予定のツールについては順次追加していきます。
+        </p>
+        <p>
+          お問い合わせやコラボレーションのご相談があれば、
+          <a href="mailto:example@example.com">メール</a> で気軽にご連絡ください。
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

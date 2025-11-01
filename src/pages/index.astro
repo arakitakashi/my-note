@@ -1,7 +1,54 @@
 ---
 import { Home } from '../components/Home';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('blog');
+const activeCategoryParam = Astro.url.searchParams.get('category');
+const normalizedCategory = activeCategoryParam
+  ? activeCategoryParam.toLowerCase()
+  : 'all';
+
+const posts = entries
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map((entry) => ({
+    title: entry.data.title,
+    excerpt: entry.data.description,
+    category: entry.data.category,
+    href: `/blog/${entry.slug}`,
+  }));
+
+const categoryCount = new Map<string, number>();
+posts.forEach((post) => {
+  categoryCount.set(post.category, (categoryCount.get(post.category) ?? 0) + 1);
+});
+
+const categories = [
+  {
+    name: 'All',
+    count: posts.length,
+    href: '/',
+    isActive: normalizedCategory === 'all',
+  },
+  ...Array.from(categoryCount.entries()).map(([name, count]) => {
+    const value = name.toLowerCase();
+    return {
+      name,
+      count,
+      href: `/?category=${encodeURIComponent(value)}`,
+      isActive: normalizedCategory === value,
+    };
+  }),
+];
+
+const filteredPosts =
+  normalizedCategory === 'all'
+    ? posts
+    : posts.filter((post) => post.category.toLowerCase() === normalizedCategory);
 ---
 <BaseLayout>
-  <Home/>
+  <Home
+    categories={categories}
+    posts={filteredPosts}
+  />
 </BaseLayout>
