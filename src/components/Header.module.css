@@ -1,8 +1,9 @@
 .header {
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  padding: 48px 120px 24px;
+  padding: 40px 40px;
   color: var(--color-text-primary);
 }
 
@@ -43,8 +44,8 @@
 
 .activeLink::before {
   content: "";
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--color-accent-strong);
   position: absolute;

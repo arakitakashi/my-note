@@ -10,8 +10,8 @@
 }
 :root {
   color-scheme: light;
-  font-family: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  font-family: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
   --color-bg: #ffffff;
   --color-text-primary: #111111;
   --color-text-secondary: rgba(17, 17, 17, 0.68);
@@ -19,13 +19,9 @@
   --color-text-subtle: rgba(17, 17, 17, 0.75);
   --color-accent: #1f6bc1;
   --color-accent-strong: #2b7ece;
-  --color-splash-primary: rgba(132, 183, 225, 0.56);
-  --color-splash-mid: rgba(132, 183, 225, 0.18);
-  --color-splash-soft: rgba(132, 183, 225, 0.08);
-  --color-splash-clear: rgba(255, 255, 255, 0);
   --color-icon: rgba(17, 17, 17, 0.72);
-  --icon-filter: brightness(0) saturate(100%) invert(16%) sepia(12%) saturate(1066%)
-    hue-rotate(179deg) brightness(95%) contrast(92%);
+  --icon-filter: brightness(0) saturate(100%) invert(16%) sepia(12%)
+    saturate(1066%) hue-rotate(179deg) brightness(95%) contrast(92%);
   --surface-muted: rgba(17, 17, 17, 0.05);
 }
 
@@ -38,13 +34,9 @@
   --color-text-subtle: rgba(245, 247, 250, 0.68);
   --color-accent: #6fb3ff;
   --color-accent-strong: #8bc5ff;
-  --color-splash-primary: rgba(54, 103, 158, 0.56);
-  --color-splash-mid: rgba(54, 103, 158, 0.28);
-  --color-splash-soft: rgba(54, 103, 158, 0.12);
-  --color-splash-clear: rgba(15, 17, 21, 0);
   --color-icon: rgba(245, 247, 250, 0.72);
-  --icon-filter: brightness(0) saturate(100%) invert(90%) sepia(6%) saturate(687%)
-    hue-rotate(174deg) brightness(104%) contrast(101%);
+  --icon-filter: brightness(0) saturate(100%) invert(90%) sepia(6%)
+    saturate(687%) hue-rotate(174deg) brightness(104%) contrast(101%);
   --surface-muted: rgba(245, 247, 250, 0.08);
 }
 
