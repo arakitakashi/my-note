@@ -1,5 +1,6 @@
 ---
 import { Home } from '../components/Home';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <!DOCTYPE html>
@@ -10,6 +11,8 @@ import { Home } from '../components/Home';
     <title>My Note</title>
   </head>
   <body>
+    <BaseLayout>
     <Home/>
+    </BaseLayout>
   </body>
 </html>
