@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header";
+import { Footer } from "../components/Footer";
 import "../styles/global.css";
 
 const { pathname } = Astro.url;
@@ -22,5 +23,6 @@ const { pathname } = Astro.url;
 <body>
     <Header currentPath={pathname}/>
     <slot />
+    <Footer />
 </body>
 </html>

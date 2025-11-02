@@ -1,0 +1,48 @@
+.footer {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 20px;
+  align-items: center;
+  color: var(--color-icon);
+  z-index: 100;
+}
+
+.link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: #1f6bc1;
+}
+
+.link svg {
+  color: inherit;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    right: 16px;
+    bottom: 16px;
+    gap: 16px;
+  }
+}

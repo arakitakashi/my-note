@@ -90,43 +90,6 @@
   color: var(--color-accent);
 }
 
-.socials {
-  display: grid;
-  grid-auto-flow: column;
-  gap: 24px;
-  justify-content: end;
-  align-items: center;
-}
-
-.socialLink {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  color: var(--color-icon);
-  transition: color 0.2s ease;
-}
-
-.socialLink svg {
-  color: inherit;
-}
-
-.socialLink:hover,
-.socialLink:focus-visible {
-  color: #1f6bc1;
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
 @media (max-width: 1024px) {
   .container {
     padding: 48px 64px 80px;
@@ -158,9 +121,5 @@
 
   .posts {
     order: 1;
-  }
-
-  .socials {
-    justify-content: center;
   }
 }
