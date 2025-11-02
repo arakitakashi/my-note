@@ -11,12 +11,16 @@ type Post = {
   title: string;
   excerpt: string;
   href: string;
+  published: Date;
+  updated?: Date;
 };
 
 type HomeProps = {
   categories: Category[];
   posts: Post[];
 };
+
+const formatDate = (value: Date) => value.toISOString().slice(0, 10);
 
 function CategoryList({ categories }: { categories: Category[] }) {
   return (
@@ -55,13 +59,28 @@ function PostList({ posts }: { posts: Post[] }) {
         </p>
       ) : (
         posts.map((post, index) => (
-          <article key={`${post.title}-${index}`} className={styles.post}>
-            <h3 className={styles.postTitle}>{post.title}</h3>
-            <p className={styles.postExcerpt}>{post.excerpt}</p>
-            <a href={post.href} className={styles.readMore}>
-              Read more ...
-            </a>
-          </article>
+          <a href={post.href} key={`${post.title}-${index}`}>
+            <article className={styles.post}>
+              <h3 className={styles.postTitle}>{post.title}</h3>
+              <p className={styles.postExcerpt}>{post.excerpt}</p>
+              <div className={styles.dates}>
+                <span>
+                  Published:{" "}
+                  <time dateTime={post.published.toISOString()}>
+                    {formatDate(post.published)}
+                  </time>
+                </span>
+                {post.updated ? (
+                  <span>
+                    Last Updated:{" "}
+                    <time dateTime={post.updated.toISOString()}>
+                      {formatDate(post.updated)}
+                    </time>
+                  </span>
+                ) : null}
+              </div>
+            </article>
+          </a>
         ))
       )}
     </section>

@@ -65,7 +65,7 @@
 
 .post {
   display: grid;
-  gap: 16px;
+  gap: 24px;
 }
 
 .postTitle {
@@ -76,6 +76,20 @@
 .postExcerpt {
   line-height: 1.85;
   color: var(--color-text-subtle);
+}
+
+.dates {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: baseline;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.dates time {
+  color: var(--color-text-primary);
 }
 
 .readMore {

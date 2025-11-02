@@ -24,6 +24,7 @@
   --icon-filter: brightness(0) saturate(100%) invert(16%) sepia(12%)
     saturate(1066%) hue-rotate(179deg) brightness(95%) contrast(92%);
   --surface-muted: rgba(17, 17, 17, 0.05);
+  --color-text-muted: rgba(17, 17, 17, 0.48);
 }
 
 :root[data-theme="dark"] {
@@ -40,6 +41,7 @@
   --icon-filter: brightness(0) saturate(100%) invert(90%) sepia(6%)
     saturate(687%) hue-rotate(174deg) brightness(104%) contrast(101%);
   --surface-muted: rgba(245, 247, 250, 0.08);
+  --color-text-muted: rgba(245, 247, 250, 0.48);
 }
 
 *,

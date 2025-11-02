@@ -11,6 +11,8 @@ const postsWithCategories = entries
   .map((entry) => ({
     title: entry.data.title,
     excerpt: entry.data.description,
+    published:entry.data.date,
+    updated: entry.data.updated,
     categories: ensureCategories(entry.data.categories),
     href: `/blog/${entry.slug}`,
   }));
@@ -38,10 +40,12 @@ const categories = [
   })),
 ];
 
-const postItems = postsWithCategories.map(({ title, excerpt, href }) => ({
+const postItems = postsWithCategories.map(({ title, excerpt, href, published, updated }) => ({
   title,
   excerpt,
   href,
+  published,
+  updated
 }));
 ---
 <BaseLayout>
