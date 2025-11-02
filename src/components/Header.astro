@@ -20,7 +20,11 @@ const isActiveLink = (href: string) => {
   }
 
   if (href === "/") {
-    return currentPath === "/" || currentPath.startsWith("/blog");
+    return (
+      currentPath === "/" ||
+      currentPath.startsWith("/blog") ||
+      currentPath.startsWith("/category")
+    );
   }
 
   return currentPath.startsWith(href);
