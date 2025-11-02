@@ -14,13 +14,17 @@ const posts = entries
   .map((entry) => ({
     title: entry.data.title,
     excerpt: entry.data.description,
-    category: entry.data.category,
+    categories: entry.data.categories,
     href: `/blog/${entry.slug}`,
   }));
 
 const categoryCount = new Map<string, number>();
+const ensureCategories = (values: string[]) => (values.length === 0 ? ["Uncategorized"] : values);
+
 posts.forEach((post) => {
-  categoryCount.set(post.category, (categoryCount.get(post.category) ?? 0) + 1);
+  ensureCategories(post.categories).forEach((category) => {
+    categoryCount.set(category, (categoryCount.get(category) ?? 0) + 1);
+  });
 });
 
 const categories = [
@@ -44,11 +48,21 @@ const categories = [
 const filteredPosts =
   normalizedCategory === 'all'
     ? posts
-    : posts.filter((post) => post.category.toLowerCase() === normalizedCategory);
+    : posts.filter((post) =>
+        ensureCategories(post.categories).some(
+          (category) => category.toLowerCase() === normalizedCategory
+        )
+      );
+
+const postItems = filteredPosts.map(({ title, excerpt, href }) => ({
+  title,
+  excerpt,
+  href,
+}));
 ---
 <BaseLayout>
   <Home
     categories={categories}
-    posts={filteredPosts}
+    posts={postItems}
   />
 </BaseLayout>

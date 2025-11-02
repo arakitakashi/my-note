@@ -39,6 +39,8 @@ const tocItems = headings
   }));
 
 const likes = post.data.likes ?? 0;
+const categories =
+  post.data.categories.length > 0 ? post.data.categories : ["Uncategorized"];
 ---
 
 <BaseLayout>
@@ -59,8 +61,8 @@ const likes = post.data.likes ?? 0;
               </div>
             </div>
             <div class={styles.metaRow}>
-              <span class={styles.metaLabel}>Category:</span>
-              <span class={styles.metaValue}>{post.data.category}</span>
+              <span class={styles.metaLabel}>Categories:</span>
+              <span class={styles.metaValue}>{categories.join(', ')}</span>
             </div>
           </div>
         </header>
