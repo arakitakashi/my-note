@@ -1,0 +1,46 @@
+---
+import styles from "./Header.module.css";
+import ModeToggle from "./ModeToggle.astro";
+
+const navItems = [
+  { href: "/", label: "Blog" },
+  { href: "/products", label: "Products" },
+  { href: "/about", label: "About" },
+];
+
+type Props = {
+  currentPath?: string;
+};
+
+const { currentPath } = Astro.props as Props;
+
+const isActiveLink = (href: string) => {
+  if (!currentPath) {
+    return href === "/";
+  }
+
+  if (href === "/") {
+    return currentPath === "/" || currentPath.startsWith("/blog");
+  }
+
+  return currentPath.startsWith(href);
+};
+---
+<header class={styles.header}>
+  <a href="/" class={styles.brand} aria-label="Takashi Araki Home">
+    Araki Takashi
+  </a>
+  <ul class={styles.globalMenu} aria-label="Primary navigation">
+    {navItems.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class={isActiveLink(item.href) ? styles.activeLink : undefined}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <ModeToggle />
+</header>

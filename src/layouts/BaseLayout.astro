@@ -1,5 +1,5 @@
 ---
-import Header from "../components/Header";
+import Header from "../components/Header.astro";
 import { Footer } from "../components/Footer";
 import "../styles/global.css";
 
@@ -19,9 +19,30 @@ const { pathname } = Astro.url;
         type="font/woff2"
         crossorigin
     />
+    <script is:inline>
+      {`(function () {
+        const storageKey = 'theme-preference';
+        const root = document.documentElement;
+        const applyTheme = (value) => {
+          root.dataset.theme = value;
+          root.style.colorScheme = value;
+        };
+        try {
+          const stored = localStorage.getItem(storageKey);
+          if (stored === 'light' || stored === 'dark') {
+            applyTheme(stored);
+            return;
+          }
+        } catch (error) {
+          // localStorage might be unavailable; ignore and fall back to system preference
+        }
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(prefersDark ? 'dark' : 'light');
+      })();`}
+    </script>
 </head>
 <body>
-    <Header currentPath={pathname}/>
+    <Header currentPath={pathname} />
     <slot />
     <Footer />
 </body>

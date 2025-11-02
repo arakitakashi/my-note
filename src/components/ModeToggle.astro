@@ -1,0 +1,98 @@
+---
+import styles from "./Header.module.css";
+---
+<button
+  type="button"
+  class={styles.modeToggle}
+  data-mode-toggle
+  aria-label="Switch to dark theme"
+  aria-pressed="false"
+  title="Switch to dark theme"
+>
+  <img
+    src="/sun.svg"
+    alt=""
+    aria-hidden="true"
+    class={styles.modeToggleIcon}
+    data-mode-toggle-icon
+  />
+</button>
+
+<script is:inline>
+  const storageKey = "theme-preference";
+  const toggleSelector = "[data-mode-toggle]";
+  const iconSelector = "[data-mode-toggle-icon]";
+  const root = document.documentElement;
+
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+  };
+
+  const getStoredTheme = () => {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      return stored === "dark" || stored === "light" ? stored : null;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const getInitialTheme = () => {
+    const stored = getStoredTheme();
+    if (stored) return stored;
+    const current = root.dataset.theme;
+    if (current === "dark" || current === "light") return current;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const updateButtonState = (button, icon, theme) => {
+    const nextTheme = theme === "light" ? "dark" : "light";
+    button.setAttribute("aria-pressed", String(theme === "dark"));
+    button.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
+    button.setAttribute("title", `Switch to ${nextTheme} theme`);
+    icon.setAttribute("src", theme === "light" ? "/sun.svg" : "/moon.svg");
+  };
+
+  const syncTheme = (theme) => {
+    const button = document.querySelector(toggleSelector);
+    const icon = button?.querySelector(iconSelector);
+    if (!button || !icon) return;
+    applyTheme(theme);
+    updateButtonState(button, icon, theme);
+  };
+
+  const button = document.querySelector(toggleSelector);
+  const icon = button?.querySelector(iconSelector);
+  if (!button || !icon) {
+    console.warn("ModeToggle button not found in DOM");
+  } else {
+    let activeTheme = getInitialTheme();
+    syncTheme(activeTheme);
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemChange = (event) => {
+      if (getStoredTheme()) return;
+      activeTheme = event.matches ? "dark" : "light";
+      syncTheme(activeTheme);
+    };
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleSystemChange);
+    } else if (typeof mediaQuery.addListener === "function") {
+      mediaQuery.addListener(handleSystemChange);
+    }
+
+    button.addEventListener("click", () => {
+      activeTheme = activeTheme === "light" ? "dark" : "light";
+      syncTheme(activeTheme);
+      try {
+        localStorage.setItem(storageKey, activeTheme);
+      } catch (error) {
+        // Ignore storage write errors (e.g., private browsing).
+      }
+    });
+  }
+</script>

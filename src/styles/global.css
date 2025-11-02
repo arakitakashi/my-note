@@ -9,6 +9,7 @@
   font-style: normal;
 }
 :root {
+  /* Light theme tokens */
   color-scheme: light;
   font-family: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
@@ -26,6 +27,7 @@
 }
 
 :root[data-theme="dark"] {
+  /* Dark theme tokens */
   color-scheme: dark;
   --color-bg: #0f1115;
   --color-text-primary: #f5f7fa;
