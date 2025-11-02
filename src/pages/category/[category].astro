@@ -34,6 +34,8 @@ const postsWithCategories = entries
     excerpt: entry.data.description,
     categories: ensureCategories(entry.data.categories),
     href: `/blog/${entry.slug}`,
+    published: entry.data.date,
+    updated: entry.data.updated,
   }));
 
 const filteredPosts = postsWithCategories.filter((post) =>
@@ -62,10 +64,12 @@ const categories = [
   })),
 ];
 
-const postItems = filteredPosts.map(({ title, excerpt, href }) => ({
+const postItems = filteredPosts.map(({ title, excerpt, href, published, updated }) => ({
   title,
   excerpt,
   href,
+  published,
+  updated
 }));
 ---
 <BaseLayout>
