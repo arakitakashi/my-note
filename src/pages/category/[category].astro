@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Home } from '../../components/Home';
+import { getCollection } from 'astro:content';
+import { ensureCategories, slugifyCategory } from '../../utils/category';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const categorySet = new Set<string>();
+
+  posts.forEach((post) => {
+    ensureCategories(post.data.categories).forEach((category) => {
+      categorySet.add(category);
+    });
+  });
+
+  return Array.from(categorySet).map((category) => ({
+    params: { category: slugifyCategory(category) },
+  }));
+}
+
+const { category: categoryParam } = Astro.params;
+if (!categoryParam) {
+  throw new Error('Category route parameter is missing');
+}
+const category = categoryParam;
+
+const entries = await getCollection('blog');
+
+const postsWithCategories = entries
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map((entry) => ({
+    title: entry.data.title,
+    excerpt: entry.data.description,
+    categories: ensureCategories(entry.data.categories),
+    href: `/blog/${entry.slug}`,
+  }));
+
+const filteredPosts = postsWithCategories.filter((post) =>
+  post.categories.some((name) => slugifyCategory(name) === category)
+);
+
+const categoryCount = new Map<string, number>();
+postsWithCategories.forEach((post) => {
+  post.categories.forEach((name) => {
+    categoryCount.set(name, (categoryCount.get(name) ?? 0) + 1);
+  });
+});
+
+const categories = [
+  {
+    name: 'All',
+    count: postsWithCategories.length,
+    href: '/',
+    isActive: false,
+  },
+  ...Array.from(categoryCount.entries()).map(([name, count]) => ({
+    name,
+    count,
+    href: `/category/${slugifyCategory(name)}`,
+    isActive: slugifyCategory(name) === category,
+  })),
+];
+
+const postItems = filteredPosts.map(({ title, excerpt, href }) => ({
+  title,
+  excerpt,
+  href,
+}));
+---
+<BaseLayout>
+  <Home
+    categories={categories}
+    posts={postItems}
+  />
+</BaseLayout>

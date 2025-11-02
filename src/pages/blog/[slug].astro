@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import styles from "../../styles/PostPage.module.css";
+import { ensureCategories } from "../../utils/category";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -39,8 +40,7 @@ const tocItems = headings
   }));
 
 const likes = post.data.likes ?? 0;
-const categories =
-  post.data.categories.length > 0 ? post.data.categories : ["Uncategorized"];
+const categories = ensureCategories(post.data.categories);
 ---
 
 <BaseLayout>
