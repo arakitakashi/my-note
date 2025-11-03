@@ -5,12 +5,23 @@
   align-items: center;
   padding: 40px 40px;
   color: var(--color-text-primary);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
 }
 
 .brand {
   font-size: 24px;
   letter-spacing: 0.01em;
   font-weight: 100;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    justify-self: center;
+  }
 }
 
 .globalMenu {
@@ -20,6 +31,11 @@
   grid-auto-flow: column;
   gap: 64px;
   font-size: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
 }
 
 .globalMenu li {
@@ -27,6 +43,11 @@
   padding-left: 24px;
   display: grid;
   align-items: center;
+
+  @media (max-width: 768px) {
+    padding-left: revert;
+    justify-items: center;
+  }
 }
 
 .globalMenu a {
@@ -39,11 +60,14 @@
   color: var(--color-text-primary);
 }
 
-.activeLink {
+.globalMenu a.activeLink {
   color: var(--color-text-primary);
+  @media (max-width: 768px) {
+    color: var(--color-accent);
+  }
 }
 
-.activeLink::before {
+.globalMenu a.activeLink::before {
   content: "";
   width: 8px;
   height: 8px;
@@ -53,6 +77,9 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .modeToggle {
@@ -64,6 +91,16 @@
   border-radius: 50%;
   color: var(--color-icon);
   transition: background-color 0.2s ease, color 0.2s ease;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    background: var(--surface-muted);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    z-index: 90;
+  }
 }
 
 .modeToggle:hover,
