@@ -11,7 +11,7 @@
 
 .layout {
   margin: 0 auto;
-  width: min(100%, 1440px);
+  width: min(100%, 1200px);
   display: grid;
   grid-template-columns: 1fr minmax(0, 240px);
   gap: 96px;
@@ -34,7 +34,7 @@
 
 .title {
   font-size: var(--font-size-5xl);
-  line-height: 1.4;
+  line-height: 1.1;
   letter-spacing: 0.04em;
 
   @media (max-width: 768px) {
