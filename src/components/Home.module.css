@@ -16,7 +16,7 @@
 }
 
 .categories h2 {
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   letter-spacing: 0.08em;
   color: var(--color-text-secondary);
 }
@@ -32,11 +32,11 @@
 .categoryList {
   display: grid;
   gap: 12px;
-  font-size: 16px;
+  font-size: var(--font-size-base);
 }
 
 .emptyText {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-soft);
 }
 
@@ -71,11 +71,11 @@
 }
 
 .postTitle {
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
 
   @media (min-width: 768px) {
-    font-size: 24px;
+    font-size: var(--font-size-3xl);
   }
 }
 
@@ -95,7 +95,7 @@
   justify-content: start;
   align-items: baseline;
   gap: 8px;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-muted);
 
   @media (min-width: 768px) {
@@ -110,7 +110,7 @@
 }
 
 .readMore {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-secondary);

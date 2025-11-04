@@ -20,12 +20,12 @@
 }
 
 .buttonLabel {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   letter-spacing: 0.04em;
 }
 
 .count {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-muted);
 }
 
@@ -35,7 +35,7 @@
 }
 
 .countLabel {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }

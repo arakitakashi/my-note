@@ -24,7 +24,7 @@
 }
 
 .title {
-  font-size: 40px;
+  font-size: var(--font-size-5xl);
   line-height: 1.4;
   letter-spacing: 0.04em;
 }
@@ -32,7 +32,7 @@
 .metaSection {
   display: grid;
   gap: 16px;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   letter-spacing: 0.04em;
 }
@@ -51,14 +51,14 @@
 }
 
 .metaLabel {
-  font-size: 12px;
+  font-size: var(--font-size-2xs);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-text-secondary);
 }
 
 .metaValue {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   letter-spacing: 0.04em;
   color: var(--color-text-primary);
 }
@@ -76,21 +76,21 @@
 
 .body :global(h1),
 .body :global(h2) {
-  font-size: 28px;
+  font-size: var(--font-size-3xl);
   letter-spacing: 0.04em;
   color: var(--color-text-primary);
   margin: 40px 0 12px;
 }
 
 .body :global(h3) {
-  font-size: 20px;
+  font-size: var(--font-size-lg);
   letter-spacing: 0.04em;
   color: var(--color-text-primary);
   margin: 32px 0 8px;
 }
 
 .body :global(h4) {
-  font-size: 18px;
+  font-size: var(--font-size-md);
   letter-spacing: 0.04em;
   color: var(--color-text-primary);
   margin: 28px 0 8px;
@@ -140,7 +140,7 @@
 }
 
 .tocTitle {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-secondary);
@@ -149,7 +149,7 @@
 .tocList {
   display: grid;
   gap: 12px;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
 }
 
 .tocItemNested {
@@ -171,7 +171,7 @@
 }
 
 .emptyToc {
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-soft);
 }
 
@@ -195,6 +195,6 @@
   }
 
   .title {
-    font-size: 32px;
+    font-size: var(--font-size-4xl);
   }
 }
