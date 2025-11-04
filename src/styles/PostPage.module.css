@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 120px 120px 160px;
+  padding: 120px 40px 160px;
   color: var(--color-text-primary);
   background: var(--color-bg);
   display: grid;
@@ -11,9 +11,9 @@
 
 .layout {
   margin: 0 auto;
-  width: min(100%, 1120px);
+  width: min(100%, 1440px);
   display: grid;
-  grid-template-columns: minmax(0, 720px) minmax(0, 240px);
+  grid-template-columns: 1fr minmax(0, 240px);
   gap: 96px;
 
   @media (max-width: 768px) {
@@ -158,14 +158,23 @@
 
 .tocMobile {
   margin-bottom: 24px;
+  border-bottom: 1px solid var(--surface-muted);
+  padding-bottom: 16px;
 
   @media (min-width: 768px) {
+    border-bottom: none;
+    margin-bottom: 0;
     display: none;
   }
 }
 
 .tocSidebar {
   display: none;
+
+  @media (min-width: 768px) {
+    border-bottom: 1px solid var(--surface-muted);
+    padding-bottom: 16px;
+  }
 
   @media (min-width: 768px) {
     display: grid;
