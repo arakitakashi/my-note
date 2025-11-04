@@ -3,6 +3,10 @@
   color: var(--color-text-primary);
   background: var(--color-bg);
   display: grid;
+
+  @media (max-width: 768px) {
+    padding: 80px 24px 120px;
+  }
 }
 
 .layout {
@@ -11,6 +15,11 @@
   display: grid;
   grid-template-columns: minmax(0, 720px) minmax(0, 240px);
   gap: 96px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 }
 
 .article {
@@ -27,6 +36,10 @@
   font-size: var(--font-size-5xl);
   line-height: 1.4;
   letter-spacing: 0.04em;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
 }
 
 .metaSection {
@@ -132,11 +145,31 @@
   position: sticky;
   top: 160px;
   height: fit-content;
+
+  @media (max-width: 768px) {
+    position: static;
+  }
 }
 
 .toc {
   display: grid;
   gap: 16px;
+}
+
+.tocMobile {
+  margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.tocSidebar {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: grid;
+  }
 }
 
 .tocTitle {
@@ -180,21 +213,27 @@
   gap: 16px;
 }
 
-@media (max-width: 768px) {
-  .wrapper {
+.wrapper {
+  @media (max-width: 768px) {
     padding: 80px 24px 120px;
   }
+}
 
-  .layout {
+.layout {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+}
 
-  .sidebar {
+.sidebar {
+  @media (max-width: 768px) {
     position: static;
   }
+}
 
-  .title {
+.title {
+  @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
   }
 }

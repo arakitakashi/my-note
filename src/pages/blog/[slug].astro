@@ -40,9 +40,10 @@ const tocItems = headings
     depth: heading.depth,
   }));
 
+const categories = ensureCategories(post.data.categories);
+
 const siteOrigin = Astro.site?.origin ?? Astro.url.origin;
 const shareUrl = new URL(`/blog/${post.slug}`, siteOrigin).toString();
-const categories = ensureCategories(post.data.categories);
 ---
 
 <BaseLayout>
@@ -68,22 +69,49 @@ const categories = ensureCategories(post.data.categories);
             </div>
           </div>
         </header>
+        {tocItems.length === 0 ? null : (
+          <nav
+            aria-label="Table of contents"
+            class={`${styles.toc} ${styles.tocMobile}`}
+            data-toc-active-class={styles.tocLinkActive}
+          >
+            <h2 class={styles.tocTitle}>Table of contents</h2>
+            <ol class={styles.tocList}>
+              {tocItems.map((item) => (
+                <li class={item.depth === 3 ? styles.tocItemNested : undefined}>
+                  <a
+                    href={`#${item.slug}`}
+                    class={styles.tocLink}
+                    data-toc-link={item.slug}
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
         <div class={styles.body}>
           <Content />
         </div>
       </article>
       <aside class={styles.sidebar}>
-        <nav aria-label="Table of contents" class={styles.toc}>
+        <nav
+          aria-label="Table of contents"
+          class={`${styles.toc} ${styles.tocSidebar}`}
+          data-toc-active-class={styles.tocLinkActive}
+        >
           <h2 class={styles.tocTitle}>Table of contents</h2>
           {tocItems.length === 0 ? (
             <p class={styles.emptyToc}>見出しはまだありません。</p>
           ) : (
             <ol class={styles.tocList}>
-              {tocItems.map((item, index) => (
-                <li key={item.slug} class={item.depth === 3 ? styles.tocItemNested : undefined}>
+              {tocItems.map((item) => (
+                <li class={item.depth === 3 ? styles.tocItemNested : undefined}>
                   <a
                     href={`#${item.slug}`}
-                    class={index === 0 ? `${styles.tocLink} ${styles.tocLinkActive}` : styles.tocLink}
+                    class={styles.tocLink}
+                    data-toc-link={item.slug}
                   >
                     {item.text}
                   </a>
@@ -101,4 +129,5 @@ const categories = ensureCategories(post.data.categories);
       </aside>
     </div>
   </main>
+  <script type="module" src="/scripts/toc-observer.js" defer></script>
 </BaseLayout>
