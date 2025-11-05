@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  padding: 40px 40px;
+  padding: 40px 40px 20px 40px;
   color: var(--color-text-primary);
 
   @media (max-width: 768px) {

@@ -90,6 +90,11 @@ function PostList({ posts }: { posts: Post[] }) {
 export function Home({ categories, posts }: HomeProps) {
   return (
     <main className={styles.container}>
+      <p className={styles.description}>
+        I am a Tokyo-based🇯🇵 designer and engineer of digital products, <br />
+        dedicated to creating work that enriches everyday life—even in small
+        ways 🌊
+      </p>
       <div className={styles.inner}>
         <div className={styles.layout}>
           <CategoryList categories={categories} />
