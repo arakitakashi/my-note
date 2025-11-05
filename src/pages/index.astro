@@ -47,8 +47,14 @@ const postItems = postsWithCategories.map(({ title, excerpt, href, published, up
   published,
   updated
 }));
+
+const pageTitle = "Araki Takashi's Note";
+const pageDescription = "Takashi Araki のブログ。フロントエンド開発やデザインの実験・学びを記録しています。";
 ---
-<BaseLayout>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
   <Home
     categories={categories}
     posts={postItems}

@@ -44,9 +44,20 @@ const categories = ensureCategories(post.data.categories);
 
 const siteOrigin = Astro.site?.origin ?? Astro.url.origin;
 const shareUrl = new URL(`/blog/${post.slug}`, siteOrigin).toString();
+
+const pageTitle = `${post.data.title} | Araki Takashi's Note`;
+const pageDescription = post.data.description ?? `${post.data.title} に関する記事です。`;
+const publishedISO = post.data.date.toISOString();
+const updatedISO = post.data.updated ? post.data.updated.toISOString() : undefined;
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  type="article"
+  publishedTime={publishedISO}
+  modifiedTime={updatedISO}
+>
   <main class={styles.wrapper}>
     <div class={styles.layout}>
       <article class={styles.article}>

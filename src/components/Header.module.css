@@ -24,6 +24,10 @@
   }
 }
 
+.name {
+  font-weight: 300;
+}
+
 .globalMenu {
   display: grid;
   justify-content: center;

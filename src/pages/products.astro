@@ -1,9 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import styles from "../styles/SimplePage.module.css";
+
+const pageTitle = "Products | Araki Takashi";
+const pageDescription = "Takashi Araki が開発・公開予定のプロダクトを紹介するページです。";
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
   <main class={styles.wrapper}>
     <div class={styles.inner}>
       <h2 class={styles.title}>Products</h2>
@@ -15,7 +21,7 @@ import styles from "../styles/SimplePage.module.css";
         </p>
         <p>
           お問い合わせやコラボレーションのご相談があれば、
-          <a href="mailto:example@example.com">メール</a> で気軽にご連絡ください。
+          XもしくはInstagramのDMまでご連絡ください。
         </p>
       </div>
     </div>

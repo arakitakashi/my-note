@@ -49,6 +49,8 @@ postsWithCategories.forEach((post) => {
   });
 });
 
+const categoryName = Array.from(categoryCount.keys()).find((name) => slugifyCategory(name) === category) ?? category;
+
 const categories = [
   {
     name: 'All',
@@ -71,8 +73,14 @@ const postItems = filteredPosts.map(({ title, excerpt, href, published, updated 
   published,
   updated
 }));
+
+const pageTitle = `${categoryName} | カテゴリー一覧 | Araki Takashi's Note`;
+const pageDescription = `${categoryName} に関する最新の記事一覧です。フロントエンドやデザインに関する学びをまとめています。`;
 ---
-<BaseLayout>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
   <Home
     categories={categories}
     posts={postItems}

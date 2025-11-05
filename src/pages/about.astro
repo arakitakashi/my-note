@@ -1,9 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import styles from "../styles/SimplePage.module.css";
+
+const pageTitle = "About | Araki Takashi";
+const pageDescription = "ソフトウェアエンジニア Takashi Araki のプロフィールと経歴を紹介します。";
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
   <main class={styles.wrapper}>
     <div class={styles.inner}>
       <h2 class={styles.title}>About</h2>
