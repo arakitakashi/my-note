@@ -2,6 +2,7 @@
   "name": "my-note",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.24.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -18,7 +19,9 @@
     "react-share": "^5.1.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2"
+    "@types/react-dom": "^19.2.2",
+    "typescript": "^6.0.3"
   }
 }
