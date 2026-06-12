@@ -33,9 +33,11 @@ pnpm preview  # ビルド結果のプレビュー
 └── docs/              # メモ・TODO
 ```
 
-## デプロイ
+## CI / デプロイ
 
-Cloudflare Pages に自動デプロイが設定されています。`main` ブランチへ push すると自動でビルド・デプロイが実行され、[arakitakashi.com](https://arakitakashi.com/) に反映されます。
+- **CI**: GitHub Actions(`.github/workflows/ci.yml`)で型チェック(`astro check`)とビルドを実行します。
+- **デプロイ**: Cloudflare Pages に自動デプロイが設定されています。`main` ブランチが更新されると自動でビルド・デプロイが実行され、[arakitakashi.com](https://arakitakashi.com/) に反映されます。
+- **運用**: `main` はブランチ保護されており、変更は Pull Request 経由で CI がパスした場合のみマージできます。これにより CI を通過したコードだけがデプロイされます。
 
 ## 記事の追加
 
