@@ -132,8 +132,7 @@ const initTocObserver = () => {
     if (!hash) {
       return;
     }
-    const match = linksByHeading.find((item) => item.slug === hash);
-    if (match) {
+    if (entryMap.has(hash)) {
       setManualActive(hash);
     }
   };
