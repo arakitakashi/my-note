@@ -1,4 +1,5 @@
 import styles from "./Home.module.css";
+import { formatDate } from "../utils/date";
 
 type Category = {
   name: string;
@@ -19,8 +20,6 @@ type HomeProps = {
   categories: Category[];
   posts: Post[];
 };
-
-const formatDate = (value: Date) => value.toISOString().slice(0, 10);
 
 function CategoryList({ categories }: { categories: Category[] }) {
   return (
