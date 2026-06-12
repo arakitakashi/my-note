@@ -33,6 +33,10 @@ pnpm preview  # ビルド結果のプレビュー
 └── docs/              # メモ・TODO
 ```
 
+## デプロイ
+
+Cloudflare Pages に自動デプロイが設定されています。`main` ブランチへ push すると自動でビルド・デプロイが実行され、[arakitakashi.com](https://arakitakashi.com/) に反映されます。
+
 ## 記事の追加
 
 `src/content/blog/` に MDX ファイルを追加します。frontmatter のスキーマは `src/content/config.ts` で定義されています:
