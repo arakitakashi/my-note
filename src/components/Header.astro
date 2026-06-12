@@ -29,22 +29,31 @@ const isActiveLink = (href: string) => {
 
   return currentPath.startsWith(href);
 };
+
+// 記事・About・Products はページ自身が h1 を持つため、ブランド表記は p に落とす
+const pagesWithOwnHeading = ["/blog/", "/about", "/products"];
+const hasPageHeading = pagesWithOwnHeading.some((path) =>
+  currentPath?.startsWith(path)
+);
+const BrandTag = hasPageHeading ? "p" : "h1";
 ---
 <header class={styles.header}>
   <a href="/" class={styles.brand} aria-label="Takashi Araki Home">
-    <h1><span class={styles.name}>Araki Takashi</span> notes</h1>
+    <BrandTag><span class={styles.name}>Araki Takashi</span> notes</BrandTag>
   </a>
-  <ul class={styles.globalMenu} aria-label="Primary navigation">
-    {navItems.map((item) => (
-      <li>
-        <a
-          href={item.href}
-          class={isActiveLink(item.href) ? styles.activeLink : undefined}
-        >
-          {item.label}
-        </a>
-      </li>
-    ))}
-  </ul>
+  <nav aria-label="Primary navigation">
+    <ul class={styles.globalMenu}>
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class={isActiveLink(item.href) ? styles.activeLink : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
   <ModeToggle />
 </header>
