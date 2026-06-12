@@ -17,12 +17,6 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.6.0
         version: 3.6.0
-      '@types/react':
-        specifier: ^19.2.2
-        version: 19.2.2
-      '@types/react-dom':
-        specifier: ^19.2.2
-        version: 19.2.2(@types/react@19.2.2)
       astro:
         specifier: ^5.15.2
         version: 5.15.2(@types/node@24.9.2)(rollup@4.52.5)(sass@1.93.3)(typescript@5.9.3)
@@ -35,6 +29,13 @@ importers:
       react-share:
         specifier: ^5.1.3
         version: 5.2.2(react@19.2.0)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.2
+        version: 19.2.2
+      '@types/react-dom':
+        specifier: ^19.2.2
+        version: 19.2.2(@types/react@19.2.2)
 
 packages:
 
