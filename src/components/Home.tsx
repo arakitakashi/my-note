@@ -54,7 +54,15 @@ function PostList({ posts }: { posts: Post[] }) {
     <section className={styles.posts}>
       {posts.length === 0 ? (
         <p className={styles.postExcerpt}>
-          まだ記事がありません。更新までしばらくお待ちください。
+          技術記事は{" "}
+          <a
+            href="https://zenn.dev/arakitakashi"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Zenn
+          </a>{" "}
+          で公開しています。このサイトにはプロジェクトと活動のまとめを掲載予定です。
         </p>
       ) : (
         posts.map((post, index) => (
@@ -90,9 +98,9 @@ export function Home({ categories, posts }: HomeProps) {
   return (
     <main className={styles.container}>
       <p className={styles.description}>
-        I am a Tokyo-based🇯🇵 designer and engineer of digital products, <br />
-        dedicated to creating work that enriches everyday life—even in small
-        ways 🌊
+        I'm an AI engineer based in Tokyo. I build enterprise AI platforms
+        and AI products. <br />
+        I write here about RAG, AI agents, and LLM evals.
       </p>
       <div className={styles.inner}>
         <div className={styles.layout}>
