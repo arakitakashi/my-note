@@ -98,9 +98,9 @@ export function Home({ categories, posts }: HomeProps) {
   return (
     <main className={styles.container}>
       <p className={styles.description}>
-        I am a Tokyo-based🇯🇵 AI engineer working on enterprise AI — <br />
-        building RAG systems, AI agents, and the evaluation loops that make
-        them reliable 🌊
+        I'm an AI engineer based in Tokyo. I build enterprise AI platforms
+        and AI products. <br />
+        I write here about RAG, AI agents, and LLM evals.
       </p>
       <div className={styles.inner}>
         <div className={styles.layout}>
